@@ -6,11 +6,10 @@
 /*   By: maoliiny <maoliiny@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 11:03:39 by maoliiny          #+#    #+#             */
-/*   Updated: 2025/05/08 13:05:45 by maoliiny         ###   ########.fr       */
+/*   Updated: 2025/05/08 15:03:03 by maoliiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft_max/libft.h"
 #include "push_swap.h"
 
 void	ss(long *a, long *b, size_t sizea, size_t sizeb)

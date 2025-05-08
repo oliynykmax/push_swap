@@ -6,11 +6,10 @@
 /*   By: maoliiny <maoliiny@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 15:15:41 by maoliiny          #+#    #+#             */
-/*   Updated: 2025/05/08 13:02:29 by maoliiny         ###   ########.fr       */
+/*   Updated: 2025/05/08 15:03:47 by maoliiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft_max/libft.h"
 #include "push_swap.h"
 
 static int	is_duplicate(const long *a, int size)

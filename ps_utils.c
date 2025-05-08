@@ -6,11 +6,11 @@
 /*   By: maoliiny <maoliiny@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 12:58:40 by maoliiny          #+#    #+#             */
-/*   Updated: 2025/05/08 13:02:47 by maoliiny         ###   ########.fr       */
+/*   Updated: 2025/05/08 15:03:10 by maoliiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft_max/libft.h"
+#include "push_swap.h"
 
 void	swap_op(const char *name, long *stack, size_t size)
 {

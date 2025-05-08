@@ -6,7 +6,7 @@
 /*   By: maoliiny <maoliiny@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 12:49:23 by maoliiny          #+#    #+#             */
-/*   Updated: 2025/05/08 12:57:50 by maoliiny         ###   ########.fr       */
+/*   Updated: 2025/05/08 15:04:14 by maoliiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PUSH_SWAP_H
 
 # include <stdlib.h>
+#include "libft_max/libft.h"
 
 # define SA "sa"
 # define SB "sb"
