@@ -6,7 +6,7 @@
 /*   By: maoliiny <maoliiny@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 15:15:41 by maoliiny          #+#    #+#             */
-/*   Updated: 2025/05/08 15:03:47 by maoliiny         ###   ########.fr       */
+/*   Updated: 2025/05/08 15:29:33 by maoliiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,47 +52,47 @@ static int	str_isdigit(const char *s)
 	return (0);
 }
 
-static long	*fill_a(int ac, char **av)
+static t_pss	fill_a(int ac, char **av)
 {
-	long	*a;
+	t_pss	a;
 	int		i;
 
-	a = malloc(sizeof(long) * ac);
+	a.stack = malloc(sizeof(long) * (ac + 1));
 	i = 0;
-	if (!a)
+	if (!a.stack)
 		print_error_and_exit(NULL, NULL);
 	while (i < ac)
 	{
 		if (str_isdigit(av[i]))
 		{
-			a[i] = ft_atoi(av[i]);
-			if (a[i] > 2147483647 || a[i] < -2147483648)
+			a.stack[i] = ft_atoi(av[i]);
+			if (a.stack[i] > 2147483647 || a.stack[i] < -2147483648)
 			{
-				print_error_and_exit(a, NULL);
+				print_error_and_exit(a.stack, NULL);
 			}
 		}
 		else
-			print_error_and_exit(a, NULL);
+			print_error_and_exit(a.stack, NULL);
 		i++;
 	}
-	if (is_duplicate(a, ac))
-		print_error_and_exit(a, NULL);
+	if (is_duplicate(a.stack, ac))
+		print_error_and_exit(a.stack, NULL);
 	return (a);
 }
 
 int	main(int ac, char **argv)
 {
-	long	*a;
-	long	*b;
+	t_pss	a;
+	// t_pss	b;
 	int		i;
 
 	i = 0;
 	if (ac < 2)
 		return (0);
 	a = fill_a(ac - 1, &argv[1]);
-	b = malloc(sizeof(a) * (ac - 1));
+	// b = malloc(0);
 	while (i < ac - 1)
-		ft_printf("num: %i\n", a[i++]);
-	free(a);
-	free(b);
+		ft_printf("num: %i\n", a.stack[i++]);
+	free(a.stack);
+	// free(b.stack);
 }
