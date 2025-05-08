@@ -6,11 +6,12 @@
 /*   By: maoliiny <maoliiny@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 15:15:41 by maoliiny          #+#    #+#             */
-/*   Updated: 2025/05/06 12:08:18 by maoliiny         ###   LAUSANNE.ch       */
+/*   Updated: 2025/05/08 13:02:29 by maoliiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_max/libft.h"
+#include "push_swap.h"
 
 static int	is_duplicate(const long *a, int size)
 {
@@ -32,7 +33,7 @@ static int	is_duplicate(const long *a, int size)
 	return (0);
 }
 
-int	str_isdigit(const char *s)
+static int	str_isdigit(const char *s)
 {
 	int	len;
 	int	i;
@@ -52,17 +53,7 @@ int	str_isdigit(const char *s)
 	return (0);
 }
 
-void	print_error_and_exit(long *a, long *b)
-{
-	if (a)
-		free(a);
-	if (b)
-		free(b);
-	write(2, "Error\n", 6);
-	exit(EXIT_FAILURE);
-}
-
-long	*fill_a(int ac, char **av)
+static long	*fill_a(int ac, char **av)
 {
 	long	*a;
 	int		i;

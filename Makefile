@@ -24,7 +24,7 @@ $(NAME):
 	${CC} ${CFLAGS} ${SRCS} libft.a -I. -o ${NAME}
 
 run: ${NAME}
-	./${NAME} 2 1 3 2345235 7 9 1 23 123 618765871
+	./${NAME} 2 3 2345235 7 9 1 23 123 618765871
 
 clean:
 	${RM} ${NAME}
