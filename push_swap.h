@@ -6,7 +6,7 @@
 /*   By: maoliiny <maoliiny@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 12:49:23 by maoliiny          #+#    #+#             */
-/*   Updated: 2025/05/08 15:26:11 by maoliiny         ###   ########.fr       */
+/*   Updated: 2025/05/08 17:17:56 by maoliiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,13 @@ typedef struct num_array
 }			t_pss;
 /* operations */
 void		ft_swap(long *a, long *b);
-void		top_swap(long *stack, size_t size);
-void		swap_op(const char *name, long *stack, size_t size);
-void		ss(long *a, long *b, size_t sizea, size_t sizeb);
-void		pp(const char *op_name, long *from, size_t size_from, long *to);
-void		rotate(char *name, long *stack, size_t size);
-void		rrotate(char *name, long *stack, size_t size);
-void		dual_rotate(const char *name, long *a, size_t size_a, long *b,
-				size_t size_b);
+void		top_swap(t_pss stack);
+void		swap_op(const char *name, t_pss stack);
+void		ss(t_pss a, t_pss b);
+void		rotate(char *name, t_pss *stack);
+void		pp(const char *op_name, t_pss *from, t_pss *to);
+void		rrotate(char *name, t_pss *stack);
+void		dual_rotate(const char *name, t_pss a, t_pss b);
 /* push_swap.c */
 void		print_error_and_exit(long *a, long *b);
 

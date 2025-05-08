@@ -6,97 +6,84 @@
 /*   By: maoliiny <maoliiny@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 11:03:39 by maoliiny          #+#    #+#             */
-/*   Updated: 2025/05/08 15:03:03 by maoliiny         ###   ########.fr       */
+/*   Updated: 2025/05/08 17:23:20 by maoliiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ss(long *a, long *b, size_t sizea, size_t sizeb)
+void	ss(t_pss a, t_pss b)
 {
 	ft_printf("ss\n");
-	top_swap(a, sizea);
-	top_swap(b, sizeb);
+	top_swap(a);
+	top_swap(b);
 }
 
-// void	pp(long *from, size_t size_from, long *to)
-// {
-// 	if (size_from == 0)
-// 		return ;
-// 	else
-// 		ft_swap(&from[0], &to[0]);
-// }
-//
-// void	pa(long *a, long *b, size_t sizeb)
-// {
-// 	ft_printf("pa\n");
-// 	pp(b, sizeb, a);
-// }
-//
-// void	pb(long *a, long *b, size_t sizea)
-// {
-// 	ft_printf("pa\n");
-// 	pp(a, sizea, b);
-// }
-
-void	pp(const char *op_name, long *from, size_t size_from, long *to)
+void	pp(const char *op_name, t_pss *from, t_pss *to)
 {
-	if (size_from == 0)
+	if (from->size == 0)
 		return ;
 	ft_printf("%s\n", op_name);
-	ft_swap(&from[0], &to[0]);
+	to->size = to->size + 1;
+	rrotate(NULL, to);
+	ft_swap(&from->stack[0], &to->stack[0]);
+	rotate(NULL, from);
+	from->size = from->size - 1;
 }
 
-void	rotate(char *name, long *stack, size_t size)
+void	rotate(char *name, t_pss *stack)
 {
 	size_t	i;
 	long	first;
+	size_t	size;
 
+	size = stack->size;
 	i = 0;
 	if (size < 2)
 		return ;
-	first = stack[0];
+	first = stack->stack[0];
 	while (i < size - 1)
 	{
-		stack[i] = stack[i + 1];
+		stack->stack[i] = stack->stack[i + 1];
 		i++;
 	}
-	stack[size - 1] = first;
+	stack->stack[size - 1] = first;
 	if (name != NULL)
 		ft_printf("%s\n", name);
 }
 
-void	rrotate(char *name, long *stack, size_t size)
+void	rrotate(char *name, t_pss *stack)
 {
 	size_t	i;
 	long	last;
+	size_t	size;
 
-	i = 0;
+	size = stack->size;
 	if (size < 2)
 		return ;
-	last = stack[size - 1];
-	while (i < size - 1)
+	last = stack->stack[size - 1];
+	i = size - 1;
+	while (i > 0)
 	{
-		stack[i + 1] = stack[i];
-		i++;
+		stack->stack[i] = stack->stack[i - 1];
+		i--;
 	}
-	stack[0] = last;
+	stack->stack[0] = last;
 	if (name != NULL)
 		ft_printf("%s\n", name);
 }
 
-void	dual_rotate(const char *name, long *a, size_t size_a, long *b,
-		size_t size_b)
+void	dual_rotate(const char *name, t_pss a, t_pss b)
 {
 	if (ft_memcmp(name, "rr", ft_strlen(name)) == 0)
 	{
-		rotate(NULL, a, size_a);
-		rotate(NULL, b, size_b);
+		rotate(NULL, &a);
+		rotate(NULL, &b);
 	}
 	else if (ft_memcmp(name, "rrr", ft_strlen(name)) == 0)
 	{
-		rrotate(NULL, a, size_a);
-		rrotate(NULL, b, size_b);
+		rrotate(NULL, &a);
+		rrotate(NULL, &b);
 	}
 	ft_printf("%s\n", name);
 }
