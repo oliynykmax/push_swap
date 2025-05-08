@@ -6,7 +6,7 @@
 /*   By: maoliiny <maoliiny@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 15:15:41 by maoliiny          #+#    #+#             */
-/*   Updated: 2025/05/08 17:50:58 by maoliiny         ###   ########.fr       */
+/*   Updated: 2025/05/08 18:20:22 by maoliiny         ###   LAUSANNE.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,73 +93,6 @@ int	main(int ac, char **argv)
 	a = fill_a(ac - 1, &argv[1]);
 	b.stack = ft_calloc(ac - 1, sizeof(long));
 	b.size = 0;
-	ft_printf("\na\n");
-	i = 0;
-	while (i < a.size)
-		ft_printf("num: %i\n", a.stack[i++]);
-	ft_printf("\nb\n");
-	i = 0;
-	while (i < b.size)
-		ft_printf("num: %i\n", b.stack[i++]);
-	swap_op("sa", a);
-	ft_printf("\na\n");
-	i = 0;
-	while (i < a.size)
-		ft_printf("num: %i\n", a.stack[i++]);
-	ft_printf("\nb\n");
-	i = 0;
-	while (i < b.size)
-		ft_printf("num: %i\n", b.stack[i++]);
-	pp(PB, &a, &b);
-	pp(PB, &a, &b);
-	pp(PB, &a, &b);
-	ft_printf("\na\n");
-	i = 0;
-	while (i < a.size)
-		ft_printf("num: %i\n", a.stack[i++]);
-	ft_printf("\nb\n");
-	i = 0;
-	while (i < b.size)
-		ft_printf("num: %i\n", b.stack[i++]);
-	dual_rotate("rr", a, b);
-		ft_printf("\na\n");
-	i = 0;
-	while (i < a.size)
-		ft_printf("num: %i\n", a.stack[i++]);
-	ft_printf("\nb\n");
-	i = 0;
-	while (i < b.size)
-		ft_printf("num: %i\n", b.stack[i++]);
-	dual_rotate("rrr", a, b);
-		ft_printf("\na\n");
-	i = 0;
-	while (i < a.size)
-		ft_printf("num: %i\n", a.stack[i++]);
-	ft_printf("\nb\n");
-	i = 0;
-	while (i < b.size)
-		ft_printf("num: %i\n", b.stack[i++]);
-	swap_op("sa", a);
-	ft_printf("\na\n");
-	i = 0;
-	while (i < a.size)
-		ft_printf("num: %i\n", a.stack[i++]);
-	ft_printf("\nb\n");
-	i = 0;
-	while (i < b.size)
-		ft_printf("num: %i\n", b.stack[i++]);
-	pp(PA, &b, &a);
-	pp(PA, &b, &a);
-	pp(PA, &b, &a);
-	ft_printf("\na\n");
-	i = 0;
-	while (i < a.size)
-		ft_printf("num: %i\n", a.stack[i++]);
-	ft_printf("\nb\n");
-	i = 0;
-	while (i < b.size)
-		ft_printf("num: %i\n", b.stack[i++]);
-
 	free(a.stack);
 	free(b.stack);
 }
