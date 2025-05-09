@@ -6,11 +6,14 @@
 /*   By: maoliiny <maoliiny@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 15:15:41 by maoliiny          #+#    #+#             */
-/*   Updated: 2025/05/08 18:20:22 by maoliiny         ###   LAUSANNE.ch       */
+/*   Updated: 2025/05/09 12:26:06 by maoliiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+long			ft_min(t_pss a);
+long			ft_max(t_pss a);
 
 static int	is_duplicate(const long *a, int size)
 {
@@ -81,18 +84,72 @@ static t_pss	fill_a(int ac, char **av)
 	return (a);
 }
 
+void	sort_five(t_pss a, t_pss b)
+{
+	while (a.stack[0] != ft_min(a))
+		rotate(RA, &a);
+	pp(PB, &a, &b);
+	while (a.stack[0] != ft_max(a))
+		rotate(RA, &a);
+	pp(PB, &a, &b);
+	if (a.size > 0)
+	{
+		while (a.stack[a.size - 1] != ft_max(a))
+			rotate(RA, &a);
+		if (a.stack[0] != ft_min(a))
+			swap_op(SA, a);
+	}
+	pp(PA, &b, &a);
+	rotate(RA, &a);
+	pp(PA, &b, &a);
+	for (size_t i = 0; i < a.size; i++)
+		ft_printf("%i\n", a.stack[i]);
+}
+
+long	ft_max(t_pss a)
+{
+	size_t	i;
+	long	max;
+
+	i = 1;
+	max = a.stack[0];
+	while (i < a.size)
+	{
+		if (a.stack[i] > max)
+			max = a.stack[i];
+		i++;
+	}
+	return (max);
+}
+
+long	ft_min(t_pss a)
+{
+	size_t	i;
+	long	min;
+
+	i = 1;
+	min = a.stack[0];
+	while (i < a.size)
+	{
+		if (a.stack[i] < min)
+			min = a.stack[i];
+		i++;
+	}
+	return (min);
+}
+
 int	main(int ac, char **argv)
 {
 	t_pss	a;
 	t_pss	b;
-	size_t	i;
 
-	i = 0;
 	if (ac < 2)
 		return (0);
 	a = fill_a(ac - 1, &argv[1]);
 	b.stack = ft_calloc(ac - 1, sizeof(long));
 	b.size = 0;
+	if (a.size <= 5)
+		sort_five(a, b);
 	free(a.stack);
 	free(b.stack);
 }
