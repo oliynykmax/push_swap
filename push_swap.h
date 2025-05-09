@@ -6,7 +6,7 @@
 /*   By: maoliiny <maoliiny@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 12:49:23 by maoliiny          #+#    #+#             */
-/*   Updated: 2025/05/08 17:17:56 by maoliiny         ###   ########.fr       */
+/*   Updated: 2025/05/09 14:05:33 by maoliiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct num_array
 /* operations */
 void		ft_swap(long *a, long *b);
 void		top_swap(t_pss stack);
-void		swap_op(const char *name, t_pss stack);
+void		swap_op(const char *name, t_pss *stack);
 void		ss(t_pss a, t_pss b);
 void		rotate(char *name, t_pss *stack);
 void		pp(const char *op_name, t_pss *from, t_pss *to);
@@ -43,5 +43,7 @@ void		rrotate(char *name, t_pss *stack);
 void		dual_rotate(const char *name, t_pss a, t_pss b);
 /* push_swap.c */
 void		print_error_and_exit(long *a, long *b);
-
+/*utils*/
+long		ft_min(t_pss a);
+long		ft_max(t_pss a);
 #endif

@@ -6,19 +6,19 @@
 /*   By: maoliiny <maoliiny@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 12:58:40 by maoliiny          #+#    #+#             */
-/*   Updated: 2025/05/08 16:38:50 by maoliiny         ###   ########.fr       */
+/*   Updated: 2025/05/09 14:03:42 by maoliiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	swap_op(const char *name, t_pss stack)
+void	swap_op(const char *name, t_pss *stack)
 {
 	ft_printf("%s\n", name);
-	if (stack.size == 0 || stack.size == 1)
+	if (stack->size == 0 || stack->size == 1)
 		return ;
 	else
-		ft_swap(&stack.stack[0], &stack.stack[1]);
+		ft_swap(&stack->stack[0], &stack->stack[1]);
 }
 
 void	ft_swap(long *a, long *b)
