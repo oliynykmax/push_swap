@@ -6,7 +6,7 @@
 /*   By: maoliiny <maoliiny@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 15:15:41 by maoliiny          #+#    #+#             */
-/*   Updated: 2025/05/09 19:45:18 by maoliiny         ###   ########.fr       */
+/*   Updated: 2025/05/09 19:58:49 by maoliiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,8 +128,6 @@ int	main(int ac, char **argv)
 		min_pos = find_index(a, ft_min(a));
 		rotate_to_top(&a, min_pos, 1);
 	}
-	if (ft_is_sort(a))
-		ft_printf("sorted");
 	free(a.stack);
 	free(b.stack);
 }
