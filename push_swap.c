@@ -6,11 +6,12 @@
 /*   By: maoliiny <maoliiny@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 15:15:41 by maoliiny          #+#    #+#             */
-/*   Updated: 2025/05/09 15:39:23 by maoliiny         ###   ########.fr       */
+/*   Updated: 2025/05/09 17:02:31 by maoliiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "libft_max/libft.h"
 
 static int	is_duplicate(const long *a, int size)
 {
@@ -83,12 +84,15 @@ static t_pss	fill_a(int ac, char **av)
 
 void	sort_five(t_pss *a, t_pss *b)
 {
-	while (a->stack[0] != ft_min(*a))
-		rotate(RA, a);
-	pp(PB, a, b);
-	while (a->stack[0] != ft_max(*a))
-		rotate(RA, a);
-	pp(PB, a, b);
+	if (a->size > 3)
+	{
+		while (a->stack[0] != ft_min(*a))
+			rotate(RA, a);
+		pp(PB, a, b);
+		while (a->stack[0] != ft_max(*a))
+			rotate(RA, a);
+		pp(PB, a, b);
+	}
 	if (a->size > 0)
 	{
 		while (a->stack[a->size - 1] != ft_max(*a))
@@ -96,9 +100,12 @@ void	sort_five(t_pss *a, t_pss *b)
 		if (a->stack[0] != ft_min(*a))
 			swap_op(SA, a);
 	}
-	pp(PA, b, a);
-	rotate(RA, a);
-	pp(PA, b, a);
+	if (b->size > 0)
+	{
+		pp(PA, b, a);
+		rotate(RA, a);
+		pp(PA, b, a);
+	}
 }
 
 long	ft_max(t_pss a)
@@ -155,10 +162,24 @@ size_t	find_pos(t_pss b, long num)
 	return (pos);
 }
 
+int	ft_is_sort(t_pss a)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < a.size - 1)
+	{
+		if (a.stack[i] - a.stack[i + 1] > 0)
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 void	turk_sort(t_pss *a, t_pss *b)
 {
 	size_t	pos;
-	int		num;
+	size_t num;
 
 	pp(PB, a, b);
 	pp(PB, a, b);
@@ -177,11 +198,24 @@ void	turk_sort(t_pss *a, t_pss *b)
 		else
 		{
 			num = find_pos(*b, a->stack[0]);
-			for (int i = num; i > 0; i--)
-				rotate(RB, b);
-			pp(PB, a, b);
-			for (int i = num; i > 0; i--)
-				rrotate(RRB, b);
+			if (num <= b->size / 2)
+			{
+    			for (size_t i = 0; i < num; i++)
+        			rotate(RB, b);
+    			pp(PB, a, b);
+   	 			for (size_t i = 0; i < num; i++)
+    	    		rrotate(RRB, b);
+			}
+			else
+			{
+    			int r = b->size - num;
+    			for (int i = 0; i < r; i++)
+        			rrotate(RRB, b);
+    			pp(PB, a, b);
+    			for (int i = 0; i < r + 1; i++)
+        			rotate(RB, b);
+			}
+
 		}
 	}
 	while (b->size != 0)
@@ -196,12 +230,16 @@ int	main(int ac, char **argv)
 	if (ac < 2)
 		return (0);
 	a = fill_a(ac - 1, &argv[1]);
+	if (ft_is_sort(a))
+		return (free(a.stack), 0);
 	b.stack = ft_calloc(ac - 1, sizeof(long));
 	b.size = 0;
 	if (a.size <= 5)
 		sort_five(&a, &b);
 	else
 		turk_sort(&a, &b);
+//	for (size_t i = 0; i < a.size; i++)
+//		ft_printf("%i\n", a.stack[i]);
 	free(a.stack);
 	free(b.stack);
 }
