@@ -6,7 +6,7 @@
 /*   By: maoliiny <maoliiny@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 12:58:40 by maoliiny          #+#    #+#             */
-/*   Updated: 2025/05/09 14:03:42 by maoliiny         ###   ########.fr       */
+/*   Updated: 2025/05/09 19:07:57 by maoliiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,18 @@ void	print_error_and_exit(long *a, long *b)
 		free(b);
 	write(2, "Error\n", 6);
 	exit(EXIT_FAILURE);
+}
+
+int	ft_is_sort(t_pss a)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < a.size - 1)
+	{
+		if (a.stack[i] - a.stack[i + 1] > 0)
+			return (0);
+		i++;
+	}
+	return (1);
 }

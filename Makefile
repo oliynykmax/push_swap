@@ -1,6 +1,6 @@
 NAME = push_swap
 
-SRCS = push_swap.c operations.c ps_utils.c
+SRCS = push_swap.c operations.c ps_utils.c turk_p1.c mini_sort.c
 
 #BONUS = ${BONUS_C:.c=.o}
 #.SECONDARY: ${BONUS}

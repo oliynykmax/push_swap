@@ -6,41 +6,11 @@
 /*   By: maoliiny <maoliiny@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 15:15:41 by maoliiny          #+#    #+#             */
-/*   Updated: 2025/05/09 17:02:31 by maoliiny         ###   ########.fr       */
+/*   Updated: 2025/05/09 19:16:21 by maoliiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft_max/libft.h"
 #include "push_swap.h"
-
-void	ft_sort_int_tab(t_pss a)
-{
-	size_t	i;
-	int		temp;
-	int		swapped;
-	long	*tab;
-	size_t	size;
-
-	tab = a.stack;
-	size = a.size;
-	swapped = 1;
-	while (swapped == 1)
-	{
-		swapped = 0;
-		i = 0;
-		while (i < (size - 1))
-		{
-			if (tab[i] > tab[i + 1])
-			{
-				temp = tab[i];
-				tab[i] = tab[i + 1];
-				tab[i + 1] = temp;
-				swapped = 1;
-			}
-			i++;
-		}
-	}
-}
 
 static int	is_duplicate(const long *a, int size)
 {
@@ -111,150 +81,36 @@ static t_pss	fill_a(int ac, char **av)
 	return (a);
 }
 
-void	sort_five(t_pss *a, t_pss *b)
-{
-	if (a->size > 3)
-	{
-		while (a->stack[0] != ft_min(*a))
-			rotate(RA, a);
-		pp(PB, a, b);
-		while (a->stack[0] != ft_max(*a))
-			rotate(RA, a);
-		pp(PB, a, b);
-	}
-	if (a->size > 0)
-	{
-		while (a->stack[a->size - 1] != ft_max(*a))
-			rotate(RA, a);
-		if (a->stack[0] != ft_min(*a))
-			swap_op(SA, a);
-	}
-	if (b->size > 0)
-	{
-		pp(PA, b, a);
-		rotate(RA, a);
-		pp(PA, b, a);
-	}
-}
-
-long	ft_max(t_pss a)
+size_t	find_b_target_idx(t_pss b, long num_to_push)
 {
 	size_t	i;
-	long	max;
+	size_t	target_idx;
+	long	best_fit_val;
 
-	i = 1;
-	if (a.size == 0)
-		return (-2147483649);
-	max = a.stack[0];
-	while (i < a.size)
-	{
-		if (a.stack[i] > max)
-			max = a.stack[i];
-		i++;
-	}
-	return (max);
-}
-
-long	ft_min(t_pss a)
-{
-	size_t	i;
-	long	min;
-
-	i = 1;
-	min = a.stack[0];
-	if (a.size == 0)
-		return (2147483649);
-	while (i < a.size)
-	{
-		if (a.stack[i] < min)
-			min = a.stack[i];
-		i++;
-	}
-	return (min);
-}
-
-size_t	find_pos(t_pss b, long num)
-{
-	size_t	pos;
-	size_t	i;
-
-	pos = 0;
-	i = 0;
 	if (b.size == 0)
 		return (0);
+	if (num_to_push > ft_max(b) || num_to_push < ft_min(b))
+		return (find_index(b, ft_max(b)));
+	target_idx = find_index(b, ft_max(b));
+	best_fit_val = LONG_MIN;
+	i = 0;
 	while (i < b.size)
 	{
-		if (num < b.stack[i])
-			pos++;
+		if (b.stack[i] < num_to_push && b.stack[i] > best_fit_val)
+		{
+			best_fit_val = b.stack[i];
+			target_idx = i;
+		}
 		i++;
 	}
-	return (pos);
-}
-
-int	ft_is_sort(t_pss a)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < a.size - 1)
-	{
-		if (a.stack[i] - a.stack[i + 1] > 0)
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
-void	turk_sort(t_pss *a, t_pss *b)
-{
-	size_t	pos;
-	size_t	num;
-	int		r;
-
-	pp(PB, a, b);
-	pp(PB, a, b);
-	if (ft_max(*b) != b->stack[0])
-		swap_op(SB, b);
-	while (a->size != 0)
-	{
-		pos = find_pos(*b, a->stack[0]);
-		if (pos == 0)
-			pp(PB, a, b);
-		else if (pos == b->size)
-		{
-			pp(PB, a, b);
-			rotate(RB, b);
-		}
-		else
-		{
-			num = find_pos(*b, a->stack[0]);
-			if (num <= b->size / 2)
-			{
-				for (size_t i = 0; i < num; i++)
-					rotate(RB, b);
-				pp(PB, a, b);
-				for (size_t i = 0; i < num; i++)
-					rrotate(RRB, b);
-			}
-			else
-			{
-				r = b->size - num;
-				for (int i = 0; i < r; i++)
-					rrotate(RRB, b);
-				pp(PB, a, b);
-				for (int i = 0; i < r + 1; i++)
-					rotate(RB, b);
-			}
-		}
-	}
-	while (b->size != 0)
-		pp(PA, b, a);
+	return (target_idx);
 }
 
 int	main(int ac, char **argv)
 {
 	t_pss	a;
 	t_pss	b;
+	size_t	min_pos;
 
 	if (ac < 2)
 		return (0);
@@ -267,8 +123,13 @@ int	main(int ac, char **argv)
 		sort_five(&a, &b);
 	else
 		turk_sort(&a, &b);
-	// for (size_t i = 0; i < a.size; i++)
-	// 		ft_printf("%i\n", a.stack[i]);
+	if (a.size > 0 && !ft_is_sort(a))
+	{
+		min_pos = find_index(a, ft_min(a));
+		rotate_to_top(&a, min_pos, 1);
+	}
+	if (ft_is_sort(a))
+		ft_printf("sorted");
 	free(a.stack);
 	free(b.stack);
 }
