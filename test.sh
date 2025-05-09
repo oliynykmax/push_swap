@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Generate a random permutation of 100 unique integers (1 to 100)
-ARRAY=$(shuf -i 1-100 | tr '\n' ' ')
+ARRAY=$(shuf -i 1-500 | tr '\n' ' ')
 
 echo "Testing with array:"
 echo "$ARRAY"
