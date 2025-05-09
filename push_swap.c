@@ -10,8 +10,37 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
 #include "libft_max/libft.h"
+#include "push_swap.h"
+
+void	ft_sort_int_tab(t_pss a)
+{
+	size_t	i;
+	int		temp;
+	int		swapped;
+	long	*tab;
+	size_t	size;
+
+	tab = a.stack;
+	size = a.size;
+	swapped = 1;
+	while (swapped == 1)
+	{
+		swapped = 0;
+		i = 0;
+		while (i < (size - 1))
+		{
+			if (tab[i] > tab[i + 1])
+			{
+				temp = tab[i];
+				tab[i] = tab[i + 1];
+				tab[i + 1] = temp;
+				swapped = 1;
+			}
+			i++;
+		}
+	}
+}
 
 static int	is_duplicate(const long *a, int size)
 {
@@ -179,7 +208,8 @@ int	ft_is_sort(t_pss a)
 void	turk_sort(t_pss *a, t_pss *b)
 {
 	size_t	pos;
-	size_t num;
+	size_t	num;
+	int		r;
 
 	pp(PB, a, b);
 	pp(PB, a, b);
@@ -200,22 +230,21 @@ void	turk_sort(t_pss *a, t_pss *b)
 			num = find_pos(*b, a->stack[0]);
 			if (num <= b->size / 2)
 			{
-    			for (size_t i = 0; i < num; i++)
-        			rotate(RB, b);
-    			pp(PB, a, b);
-   	 			for (size_t i = 0; i < num; i++)
-    	    		rrotate(RRB, b);
+				for (size_t i = 0; i < num; i++)
+					rotate(RB, b);
+				pp(PB, a, b);
+				for (size_t i = 0; i < num; i++)
+					rrotate(RRB, b);
 			}
 			else
 			{
-    			int r = b->size - num;
-    			for (int i = 0; i < r; i++)
-        			rrotate(RRB, b);
-    			pp(PB, a, b);
-    			for (int i = 0; i < r + 1; i++)
-        			rotate(RB, b);
+				r = b->size - num;
+				for (int i = 0; i < r; i++)
+					rrotate(RRB, b);
+				pp(PB, a, b);
+				for (int i = 0; i < r + 1; i++)
+					rotate(RB, b);
 			}
-
 		}
 	}
 	while (b->size != 0)
@@ -238,8 +267,8 @@ int	main(int ac, char **argv)
 		sort_five(&a, &b);
 	else
 		turk_sort(&a, &b);
-//	for (size_t i = 0; i < a.size; i++)
-//		ft_printf("%i\n", a.stack[i]);
+	// for (size_t i = 0; i < a.size; i++)
+	// 		ft_printf("%i\n", a.stack[i]);
 	free(a.stack);
 	free(b.stack);
 }
