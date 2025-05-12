@@ -45,7 +45,7 @@ void		dual_rotate(const char *name, t_pss a, t_pss b);
 /*mini sort*/
 long		ft_min(t_pss a);
 long		ft_max(t_pss a);
-void		sort_five(t_pss *a, t_pss *b);
+void		sort_three(t_pss *a);
 size_t		find_pos(t_pss b, long num);
 size_t		find_index(t_pss stack, long target);
 /*utils*/
@@ -56,5 +56,6 @@ void		turk_sort(t_pss *a, t_pss *b);
 void		rotate_to_top(t_pss *s, size_t pos, int is_a);
 size_t		find_b_target_idx(t_pss b, long num_to_push);
 size_t		find_index(t_pss stack, long target);
+void		small_turk(t_pss *a, t_pss *b);
 
 #endif

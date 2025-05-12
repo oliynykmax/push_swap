@@ -12,30 +12,25 @@
 
 #include "push_swap.h"
 
-void	sort_five(t_pss *a, t_pss *b)
+void	sort_three(t_pss *a)
 {
-	if (a->size > 3)
+	long	max;
+
+	if (a->size <= 1)
+		return ;
+	if (a->size == 2)
 	{
-		while (a->stack[0] != ft_min(*a))
-			rotate(RA, a);
-		pp(PB, a, b);
-		while (a->stack[0] != ft_max(*a))
-			rotate(RA, a);
-		pp(PB, a, b);
-	}
-	if (a->size > 0)
-	{
-		while (a->stack[a->size - 1] != ft_max(*a))
-			rotate(RA, a);
-		if (a->stack[0] != ft_min(*a))
+		if (a->stack[0] > a->stack[1])
 			swap_op(SA, a);
+		return ;
 	}
-	if (b->size == 2 || b->size == 1)
-	{
-		pp(PA, b, a);
+	max = ft_max(*a);
+	if (a->stack[0] == max)
 		rotate(RA, a);
-		pp(PA, b, a);
-	}
+	else if (a->stack[1] == max)
+		rrotate(RRA, a);
+	if (a->stack[0] > a->stack[1])
+		swap_op(SA, a);
 }
 
 long	ft_max(t_pss a)

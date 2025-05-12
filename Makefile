@@ -6,7 +6,7 @@
 #    By: maoliiny <maoliiny@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/09 19:29:32 by maoliiny          #+#    #+#              #
-#    Updated: 2025/05/09 19:30:37 by maoliiny         ###   ########.fr        #
+#    Updated: 2025/05/12 11:23:24 by maoliiny         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ SRCS = push_swap.c \
 	   operations.c \
 	   ps_utils.c \
 	   turk_and_cost.c \
-	   mini_sort.c
+	   mini_sort.c \
+	   small_turk.c
 
 LIBFT_SRCS = libft_max/ft_atoi.c \
 			 libft_max/ft_bzero.c \

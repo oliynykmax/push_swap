@@ -6,7 +6,7 @@
 /*   By: maoliiny <maoliiny@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 15:15:41 by maoliiny          #+#    #+#             */
-/*   Updated: 2025/05/09 19:58:49 by maoliiny         ###   ########.fr       */
+/*   Updated: 2025/05/12 10:42:23 by maoliiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ int	main(int ac, char **argv)
 		print_error_and_exit(a.stack, NULL);
 	b.size = 0;
 	if (a.size <= 5)
-		sort_five(&a, &b);
+		small_turk(&a, &b);
 	else
 		turk_sort(&a, &b);
 	if (a.size > 0 && !ft_is_sort(a))

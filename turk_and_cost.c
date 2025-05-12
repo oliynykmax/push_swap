@@ -1,18 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   turk_p1.c                                          :+:      :+:    :+:   */
+/*   turk_and_cost.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maoliiny <maoliiny@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 18:51:58 by maoliiny          #+#    #+#             */
-/*   Updated: 2025/05/09 19:03:54 by maoliiny         ###   ########.fr       */
+/*   Updated: 2025/05/12 11:23:04 by maoliiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft_max/libft.h"
 #include "push_swap.h"
-#include <limits.h>
 
 static int	get_cost(t_pss a, t_pss b, size_t pos_a)
 {
@@ -121,7 +119,7 @@ void	turk_sort(t_pss *a, t_pss *b)
 
 	pp(PB, a, b);
 	pp(PB, a, b);
-	sort_five(b, a);
+	sort_three(a);
 	while (a->size > 3)
 	{
 		cheapest_a_idx = find_cheapest(*a, *b);
@@ -130,7 +128,7 @@ void	turk_sort(t_pss *a, t_pss *b)
 		rotate_to_top(b, b_target_idx, 0);
 		pp(PB, a, b);
 	}
-	sort_five(a, b);
+	sort_three(a);
 	while (b->size > 0)
 	{
 		a_target_idx = find_a_target_idx(*a, b->stack[0]);
