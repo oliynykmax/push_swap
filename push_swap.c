@@ -118,6 +118,8 @@ int	main(int ac, char **argv)
 	if (ft_is_sort(a))
 		return (free(a.stack), 0);
 	b.stack = ft_calloc(ac - 1, sizeof(long));
+	if (!b.stack)
+		print_error_and_exit(a.stack, NULL);
 	b.size = 0;
 	if (a.size <= 5)
 		sort_five(&a, &b);
